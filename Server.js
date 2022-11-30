@@ -45,7 +45,9 @@ app.listen(port, () => {
 app.use(express.json())
 app.use(cookieParser())
 
-
+app.use('/',(req,res)=>{
+    res.send('api running')
+})
 app.use('/users', userRoute)
 app.use('/auth', authRoute)
 app.use('/hotels',hotelRoute)
