@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "nodemon Server.js"
   },
@@ -21,3 +24,4 @@
     "nodemon": "^2.0.20"
   }
 }
+ 
