@@ -57,7 +57,7 @@ export const Add_Expense = async (req, res, next) => {
 }
 export const get_Income = async (req, res, next) => {
     try {
-        const income = await Income.find()
+        const income = await Income.find().sort({createdAt:-1})
         res.status(200).json(income)
     } catch (error) {
         next(createError(404, error))
@@ -66,10 +66,28 @@ export const get_Income = async (req, res, next) => {
 }
 export const get_Expense = async (req, res, next) => {
     try {
-        const expense = await Expense.find()
-        res.status(200).json(expense)
+        const expense = await Expense.find().sort({createdAt:-1})
+        res.status(200).json(expense) 
     } catch (error) {
         next(createError(404, error))
 
     }
 } 
+export const income_get_dates = async(req,res,next)=>{
+    try {
+        const dates = await Income.find({date:req.body.date})
+        res.status(200).json(dates)
+    } catch (error) {
+        next(createError(400,'date not found'))
+    }
+    
+}
+export const expense_get_dates = async(req,res,next)=>{
+    try {
+        const dates = await Expense.find({date:req.body.date})
+        res.status(200).json(dates)
+    } catch (error) {
+        next(createError(400,'date not found'))
+    }
+
+}
