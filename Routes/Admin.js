@@ -4,6 +4,9 @@ import {getTransaction,addtransaction,deleteTransaction,
 Add_Income,get_Income,Add_Expense,get_Expense,income_get_dates,expense_get_dates
 } from '../Controllers/TransactionController.js'
 
+import {bookingController} from '../Controllers/BookingController.js'
+
+
 router.get('/transactions',getTransaction)
 router.post('/addTransactions',addtransaction)
 router.delete('/deleteTransaction/:id',deleteTransaction)
@@ -17,6 +20,7 @@ router.post('/add_expense',Add_Expense)
 router.delete('/delete_expense')
 router.post('/income_date',income_get_dates)
 router.post('/expense_date',expense_get_dates)
-
+router.post('/add_booking',bookingController.addbooking)
+router.get('/all_bookings',bookingController.getAllBookings)
 
 export default router;   

@@ -8,6 +8,7 @@ import userRoute from './Routes/Users.js'
 import hotelRoute from './Routes/Hotels.js'
 import AdminRoute from './Routes/Admin.js'
 import cors from 'cors'
+import { MONGO,PORT } from './config/Config.js'
 
 const app = express()
 
@@ -16,13 +17,13 @@ const app = express()
 
 app.use(cors())
 dotenv.config()
-const port = process.env.PORT ? process.env.PORT : 5001
+const port = PORT ? PORT : 5001
 
 //connection to mongodb 
 
 const connect = async () => {
     try {
-        await mongoose.connect(process.env.MONGO).then(() => {
+        await mongoose.connect(MONGO).then(() => {
             console.log('database connected')
         });
     } catch (err) {
@@ -45,9 +46,11 @@ app.listen(port, () => {
 app.use(express.json())
 app.use(cookieParser())
 
-// app.use('/',(req,res)=>{
-//     console.log('api running')
+// app.use('/',(req,res,next)=>{
+//     res.send('api running') 
+//     next()
 // })
+// app.use('/',(req,res)=>res.send('api started'))
 app.use('/users', userRoute)
 app.use('/auth', authRoute)
 app.use('/hotels',hotelRoute)
